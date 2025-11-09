@@ -50,7 +50,10 @@ func SubmitDeseqConfig(c *gin.Context) {
 
 	// We create a unique job directory based on the current timestamp
 	jobID := time.Now().Format("20060102-150405")
-	savePath := filepath.Join("deseq_jobs", jobID)
+	// Since we are in a docker container we need to use the tmp_data
+	// directory since the appuser has read/write permissions
+	const tmpDirPath = "/tmp_data"
+	savePath := filepath.Join(tmpDirPath, jobID)
 
 	// We create the directory if it doesn't exist
 	if err := os.MkdirAll(savePath, 0755); err != nil {
