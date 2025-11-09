@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"rapi/handlers"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -22,7 +23,7 @@ func main() {
 		MaxAge:        12 * time.Hour,
 	}))
 
-	r.GET("/")
+	r.GET("/", handlers.GetRoot)
 
 	// We try to run on local host
 	err := r.Run(":8000")

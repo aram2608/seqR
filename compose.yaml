@@ -4,9 +4,13 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-    - "8080:80"
+      - "80:80"
+    environment:
+      - API_URL=http://api:8080
 
   rapi:
-    build: ./r-api
+    build:
+      context: ./r-api
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
