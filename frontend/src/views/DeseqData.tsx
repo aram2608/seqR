@@ -190,7 +190,7 @@ export const DeseqConfig = () => {
     data.append('metadata', formData.metadataFile, formData.metadataFile.name);
 
     // We define the endpoint we make a POST request to
-    const apiEndpoint = '/api/deseq/submit'; 
+    const apiEndpoint = '/api/deseq/data'; 
     
     // Simple Exponential Backoff for retries
     const MAX_RETRIES = 3;

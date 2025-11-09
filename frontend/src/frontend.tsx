@@ -12,7 +12,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { HomePage } from "./pages/HomePage.tsx";
 import { AboutPage } from "./pages/AboutPage.tsx";
-import { SubmissionForm } from "./pages/SubmitForm.tsx";
+import { NotFound } from "./pages/NotFound.tsx";
+import { DataSubmissionForm } from "./pages/SubmitData.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,13 +25,17 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "submit",
-        element: <SubmissionForm />,
+        path: "data",
+        element: <DataSubmissionForm />,
       },
       {
         path: "about",
         element: <AboutPage />,
       },
+      {
+        path: "*",
+        element: <NotFound />
+      }
     ],
   },
 ]);

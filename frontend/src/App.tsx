@@ -40,7 +40,7 @@ export function App() {
       {/* Navigation between pages */}
       <nav css={navStyles.container}>
         <Link css={navStyles.link} to="/">Home</Link> 
-        | <Link css={navStyles.link} to="/submit">Submit</Link>
+        | <Link css={navStyles.link} to="/data">Submit</Link>
         | <Link css={navStyles.link} to="/about">About</Link> 
       </nav>
       {/* Swapping pages */}

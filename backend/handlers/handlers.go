@@ -23,7 +23,8 @@ func GetVersion(c *gin.Context) {
 	c.JSON(http.StatusOK, rapi)
 }
 
-func SubmitDeseqConfig(c *gin.Context) {
+// Funciton to parse file submissions from the DESeq data entry
+func SubmitDeseqData(c *gin.Context) {
 	// We get the DESeq Formula
 	formula := c.PostForm("formula")
 	if formula == "" {

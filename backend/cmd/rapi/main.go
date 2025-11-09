@@ -28,7 +28,7 @@ func main() {
 	})
 
 	// We get the form data from the frontend
-	r.POST("/deseq/submit", handlers.SubmitDeseqConfig)
+	r.POST("/deseq/data", handlers.SubmitDeseqData)
 
 	// We try to run on local host
 	err := r.Run(":8080")
