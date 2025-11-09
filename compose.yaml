@@ -11,7 +11,7 @@ services:
 
   backend:
     build: 
-      context: ./r-api
+      context: ./backend
       dockerfile: Dockerfile
     container_name: seqr-backend
     expose:
@@ -19,7 +19,7 @@ services:
     networks:
       - app-network
 
-  nginx:
+  seqR-nginx:
     image: nginx:alpine
     container_name: nginx-proxy
     ports:
