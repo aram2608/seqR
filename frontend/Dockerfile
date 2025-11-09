@@ -15,14 +15,13 @@ RUN rm -rf /usr/share/nginx/html/*
 
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN echo 'server { \
+  listen 3000; \
+  location / { \
+    root /usr/share/nginx/html; \
+    index index.html index.html; \
+  } \
+}' > /etc/nginx/conf.d/default.conf
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-EXPOSE 80
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
-  CMD wget -qO- http://localhost/ || exit 1
-
-ENTRYPOINT ["/entrypoint.sh"]
+EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]

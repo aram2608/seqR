@@ -1,22 +1,18 @@
-import { APITester } from "./APITester";
+import { Outlet, Link } from "react-router-dom";
 import "./index.css";
-
-import logo from "./logo.svg";
-import reactLogo from "./react.svg";
 
 export function App() {
   return (
     <div className="app">
-      <div className="logo-container">
-        <img src={logo} alt="Bun Logo" className="logo bun-logo" />
-        <img src={reactLogo} alt="React Logo" className="logo react-logo" />
+      {/* Navigation between pages */}
+      <nav>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/submit">Submit</Link>
+      </nav>
+      {/* Swapping pages */}
+      <div className="page-content">
+        <Outlet />
       </div>
-
-      <h1>Bun + React</h1>
-      <p>
-        Edit <code>src/App.tsx</code> and save to test HMR
-      </p>
-      <APITester />
+      {/* Footer or other persistent elements */}
     </div>
   );
 }

@@ -1,187 +1,147 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-bg: #1e1e2c;          /* Dark Slate */
+  --color-text: #F0F4F8;        /* Near-White */
+  --color-accent: #3b82f6;      /* Tailwind Blue 500 */
+  --color-highlight: #334155;    /* Slate 700 */
+  --color-success: #10b981;     /* Emerald Green */
+  --color-error: #ef4444;       /* Red */
+  
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
+
+/* --- General Layout and Background --- */
+
 body {
   margin: 0;
   display: grid;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  position: relative;
+  background-color: var(--color-bg);
 }
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.05;
-  background: url("./logo.svg");
-  background-size: 256px;
-  transform: rotate(-12deg) scale(1.35);
-  animation: slide 30s linear infinite;
-  pointer-events: none;
-}
-@keyframes slide {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 256px 224px;
-  }
-}
+
 .app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
+
+/* --- Typography and Code --- */
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+code {
+  background-color: var(--color-highlight);
+  color: var(--color-accent);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* --- Logos and Animations --- */
+
 .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 3rem;
+  margin-bottom: 3rem;
 }
+
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 5em;
+  padding: 1em;
   will-change: filter;
-  transition: filter 0.3s;
+  transition: filter 0.2s, transform 0.2s;
+  filter: none;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 1em rgba(59, 130, 246, 0.5));
+  transform: scale(1.05);
 }
+
 .bun-logo {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
-.bun-logo:hover {
-  filter: drop-shadow(0 0 2em #fbf0dfaa);
-}
+
 .react-logo {
   animation: spin 20s linear infinite;
 }
-.react-logo:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+
 @keyframes spin {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
 }
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+/* --- Form and Inputs --- */
+
+.max-w-4xl {
+    max-width: 80rem; 
 }
-code {
-  background-color: #1a1a1a;
-  padding: 0.2em 0.4em;
-  border-radius: 0.3em;
-  font-family: monospace;
+
+.bg-gray-50 {
+    background-color: var(--color-bg); 
 }
-.api-tester {
-  margin: 2rem auto 0;
-  width: 100%;
-  max-width: 600px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+
+.shadow-xl {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.endpoint-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #1a1a1a;
-  padding: 0.75rem;
-  border-radius: 12px;
-  font: monospace;
-  border: 2px solid #fbf0df;
-  transition: 0.3s;
-  width: 100%;
-  box-sizing: border-box;
+
+/* Inputs and interactive blocks */
+.p-6 {
+    background-color: #2c2c3e;
+    border: 1px solid var(--color-highlight);
+    border-radius: 0.75rem;
 }
-.endpoint-row:focus-within {
-  border-color: #f3d5a3;
+
+input[type="text"] {
+    background-color: #1a1a25 !important; 
+    border: 1px solid var(--color-highlight) !important;
+    color: var(--color-text) !important;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
-.method {
-  background: #fbf0df;
-  color: #1a1a1a;
-  padding: 0.3rem 0.7rem;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.9em;
-  appearance: none;
-  margin: 0;
-  width: min-content;
-  display: block;
-  flex-shrink: 0;
-  border: none;
+
+input[type="text"]:focus {
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important;
 }
-.method option {
-  text-align: left;
+
+/* Submission Button */
+.bg-indigo-600 {
+    background-color: var(--color-accent) !important;
+    color: var(--color-bg) !important;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.2s;
 }
-.url-input {
-  width: 100%;
-  flex: 1;
-  background: 0;
-  border: 0;
-  color: #fbf0df;
-  font: 1em monospace;
-  padding: 0.2rem;
-  outline: 0;
+
+.bg-indigo-700:hover {
+    background-color: #2563eb !important;
+    transform: none;
 }
-.url-input:focus {
-  color: #fff;
+
+/* Status Messages */
+.bg-yellow-100 {
+    background-color: rgba(59, 130, 246, 0.1); 
+    border-color: var(--color-accent);
+    color: var(--color-text);
 }
-.url-input::placeholder {
-  color: rgba(251, 240, 223, 0.4);
-}
-.send-button {
-  background: #fbf0df;
-  color: #1a1a1a;
-  border: 0;
-  padding: 0.4rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 700;
-  transition: 0.1s;
-  cursor: var(--bun-cursor);
-}
-.send-button:hover {
-  background: #f3d5a3;
-  transform: translateY(-1px);
-  cursor: pointer;
-}
-.response-area {
-  width: 100%;
-  min-height: 120px;
-  background: #1a1a1a;
-  border: 2px solid #fbf0df;
-  border-radius: 12px;
-  padding: 0.75rem;
-  color: #fbf0df;
-  font: monospace;
-  resize: vertical;
-  box-sizing: border-box;
-}
-.response-area:focus {
-  border-color: #f3d5a3;
-}
-.response-area::placeholder {
-  color: rgba(251, 240, 223, 0.4);
-}
-@media (prefers-reduced-motion) {
-  *,
-  ::before,
-  ::after {
-    animation: none !important;
-  }
+
+.bg-red-100 {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-color: var(--color-error);
+    color: var(--color-error);
 }

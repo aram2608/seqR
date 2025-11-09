@@ -8,19 +8,36 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const elem = document.getElementById("root")!;
-const app = (
+import { HomePage } from "./pages/HomePage.tsx";
+import { AboutPage } from "./pages/AboutPage.tsx";
+import { SubmissionForm } from "./pages/SubmitForm.tsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "submit",
+        element: <SubmissionForm />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+    ],
+  },
+]);
+
+const root = createRoot(document.getElementById("root")!);
+root.render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>
 );
-
-if (import.meta.hot) {
-  // With hot module reloading, `import.meta.hot.data` is persisted.
-  const root = (import.meta.hot.data.root ??= createRoot(elem));
-  root.render(app);
-} else {
-  // The hot module reloading API is not available in production.
-  createRoot(elem).render(app);
-}
