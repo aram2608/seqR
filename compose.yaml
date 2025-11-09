@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+    - "8080:80"
+
+  rapi:
+    build: ./r-api
+    ports:
+      - "8000:8000"
