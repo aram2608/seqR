@@ -1,4 +1,4 @@
-import { DeseqConfig } from "@/components/DeseqConfig";
+import { DeseqConfig } from "@/views/DeseqConfig";
 
 export function SubmissionForm() {
     return (

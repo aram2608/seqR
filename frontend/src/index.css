@@ -13,46 +13,6 @@
   background-color: var(--color-bg);
 }
 
-/* --- General Layout and Background --- */
-
-body {
-  margin: 0;
-  display: grid;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: var(--color-bg);
-}
-
-.app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-}
-
-/* --- Typography and Code --- */
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: var(--color-accent);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-}
-
-code {
-  background-color: var(--color-highlight);
-  color: var(--color-accent);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-family: monospace;
-}
-
-/* --- Logos and Animations --- */
-
 .logo-container {
   display: flex;
   justify-content: center;
@@ -99,49 +59,4 @@ code {
 
 .shadow-xl {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Inputs and interactive blocks */
-.p-6 {
-    background-color: #2c2c3e;
-    border: 1px solid var(--color-highlight);
-    border-radius: 0.75rem;
-}
-
-input[type="text"] {
-    background-color: #1a1a25 !important; 
-    border: 1px solid var(--color-highlight) !important;
-    color: var(--color-text) !important;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-input[type="text"]:focus {
-    border-color: var(--color-accent) !important;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5) !important;
-}
-
-/* Submission Button */
-.bg-indigo-600 {
-    background-color: var(--color-accent) !important;
-    color: var(--color-bg) !important;
-    font-weight: 600;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.bg-indigo-700:hover {
-    background-color: #2563eb !important;
-    transform: none;
-}
-
-/* Status Messages */
-.bg-yellow-100 {
-    background-color: rgba(59, 130, 246, 0.1); 
-    border-color: var(--color-accent);
-    color: var(--color-text);
-}
-
-.bg-red-100 {
-    background-color: rgba(239, 68, 68, 0.1);
-    border-color: var(--color-error);
-    color: var(--color-error);
 }
