@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css } from "@emotion/react"
+import { css } from "@emotion/react";
 
 const mainContainerStyle = css({
   maxWidth: "56rem",

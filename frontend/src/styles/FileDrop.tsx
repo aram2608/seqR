@@ -32,74 +32,84 @@ const fileDropZoneStyles = {
     fontSize: "0.875rem",
     color: "#6b7280",
   }),
-  subtext: css`
-    font-size: 0.75rem;
-    color: #6b7280;
-  `,
+  subtext: css({
+    fontSize: "0.75rem",
+    color: "#6b7280",
+  }),
   hiddenInput: css({
     display: "none",
   }),
 };
 
 // Dynamic drop zone styles
-const dropZoneDynamicStyles = (file: File | null, disabled: boolean) => css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 8rem; /* h-32 */
-  border-width: 2px; /* border-2 */
-  border-radius: 0.75rem; /* rounded-xl */
-  cursor: pointer;
-  transition: all 300ms ease; /* transition duration-300 */
+const dropZoneDynamicStyles = (file: File | null, disabled: boolean) =>
+  css({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "8rem",
+    borderWidth: "2px",
+    borderRadius: "0.75rem",
+    cursor: "pointer",
+    transition: "all 300ms ease",
 
-  // Disabled state
-  ${disabled &&
-  css`
-    opacity: 0.6;
-    cursor: not-allowed;
-  `}
+    // We evaulate if the the button is disabled and only
+    // spread the values if true
+    ...(disabled && {
+      opacity: 0.6,
+      cursor: "not-allowed",
+    }),
 
-  // File not selected state (default and hover)
-  ${!file &&
-  css`
-    border-style: dashed; /* border-dashed */
-    border-color: #d1d5db; /* border-gray-300 */
-    background-color: #f9fafb; /* bg-gray-50 */
+    // We do the same here but if the file is not input
+    ...(!file && {
+      borderStyle: "dashed",
+      borderColor: "#d1d5db",
+      backgroundColor: "#f9fafb",
+      "&:hover": {
+        borderColor: "#4f46e5",
+        backgroundColor: "#eef2ff",
+      },
+    }),
 
-    &:hover {
-      border-color: #4f46e5; /* hover:border-indigo-500 */
-      background-color: #eef2ff; /* hover:bg-indigo-50 */
-    }
-  `}
+    // This is the second conditional catch for if the file is uploaded
+    ...(file && {
+      borderColor: "#4ade80",
+      backgroundColor: "#f0fdf4",
+    }),
+  });
 
-  // File selected state
-  ${file &&
-  css`
-    border-color: #4ade80; /* border-green-400 */
-    background-color: #f0fdf4; /* bg-green-50 */
-  `}
-`;
+// We use some icons from lucide-react so we update given the file status
+const iconDynamicStyles = (file: File | null) =>
+  css({
+    width: "2rem",
+    height: "2rem",
+    marginBottom: "0.5rem",
+    color: file ? "#16a34a" : "#9ca3af",
+  });
 
-const iconDynamicStyles = (file: File | null) => css`
-  width: 2rem; /* w-8 */
-  height: 2rem; /* h-8 */
-  margin-bottom: 0.5rem; /* mb-2 */
-  color: ${file ? "#16a34a" : "#9ca3af"}; /* text-green-600 or text-gray-400 */
-`;
+// Style for the selected file text
+const fileSelectedTextStyles = css({
+  fontWeight: "600",
+  color: "#16a34a",
+});
 
-const fileSelectedTextStyles = css`
-  font-weight: 600; /* font-semibold */
-  color: #16a34a; /* text-green-600 */
-`;
-
-const FileDropZone: React.FC<{
+// We make a data type to store all the props
+type FileDropProps = {
   label: string;
   file: File | null;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled: boolean;
-}> = ({ label, file, onChange, disabled }) => {
+};
+
+// We make a custom function compoent to help style the file landing zone
+const FileDropZone: React.FC<FileDropProps> = ({
+  label,
+  file,
+  onChange,
+  disabled,
+}) => {
   const fileInputId = label.replace(/\s/g, "-").toLowerCase();
 
   return (

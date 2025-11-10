@@ -1,13 +1,15 @@
 import React, { useState, useCallback } from "react";
-import { Send, Loader2, CheckCircle, XCircle, Info } from "lucide-react";
+import { Send, Loader2, Info } from "lucide-react";
 /** @jsx jsx */
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import FileDropZone from "@/styles/FileDrop";
 import mainContainerStyle from "@/styles/ContainerStyle";
 import headerStyle from "@/styles/HeaderStyle";
 import formStyles from "@/styles/FormStyle";
 import paragraphStyle from "@/styles/ParagraphStyle";
 import submitButtonStyle from "@/styles/SubmitButtonStyle";
+import type { SubmissionStatus } from "@/styles/StatusIcons";
+import { getStatusIcon } from "@/styles/StatusIcons";
 
 // We define the type to represent the configuration data
 interface DeseqConfigData {
@@ -15,9 +17,6 @@ interface DeseqConfigData {
   countsFile: File | null;
   metadataFile: File | null;
 }
-
-// We make a small union type to represent submission status
-type SubmissionStatus = "idle" | "loading" | "success" | "error";
 
 // Submission form for Deseq files
 export const DeseqConfig = () => {
@@ -135,20 +134,6 @@ export const DeseqConfig = () => {
     }
   };
 
-  // This function updates the UI given the status of our request
-  const getStatusIcon = () => {
-    switch (status) {
-      case "loading":
-        return <Loader2 className="h-6 w-6 animate-spin text-indigo-500" />;
-      case "success":
-        return <CheckCircle className="h-6 w-6 text-green-500" />;
-      case "error":
-        return <XCircle className="h-6 w-6 text-red-500" />;
-      default:
-        return null;
-    }
-  };
-
   // We make a boolean value to disable the buttons given a request's status
   const isDisabled = !formData.countsFile || !formData.metadataFile;
 
@@ -222,7 +207,7 @@ export const DeseqConfig = () => {
 
         {/* Submission Status Display */}
         <div css={formStyles.statusDisplay}>
-          {getStatusIcon()}
+          {getStatusIcon(status)}
           {status === "success" && (
             <p css={paragraphStyle}>Configuration successfully submitted!</p>
           )}
