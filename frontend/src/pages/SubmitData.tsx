@@ -1,9 +1,9 @@
 import { DeseqConfig } from "@/views/DeseqData";
 
 export function DataSubmissionForm() {
-    return (
+  return (
     <div className="app">
-        <DeseqConfig />
+      <DeseqConfig />
     </div>
-    );
+  );
 }

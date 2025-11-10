@@ -1,62 +1,14 @@
 :root {
-  --color-bg: #1e1e2c;          /* Dark Slate */
-  --color-text: #F0F4F8;        /* Near-White */
-  --color-accent: #3b82f6;      /* Tailwind Blue 500 */
-  --color-highlight: #334155;    /* Slate 700 */
-  --color-success: #10b981;     /* Emerald Green */
-  --color-error: #ef4444;       /* Red */
-  
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-bg: #1e1e2c; /* Dark Slate */
+  --color-text: #f0f4f8; /* Near-White */
+  --color-accent: #3b82f6; /* Tailwind Blue 500 */
+  --color-highlight: #334155; /* Slate 700 */
+  --color-success: #10b981; /* Emerald Green */
+  --color-error: #ef4444; /* Red */
+
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   color-scheme: dark;
   color: var(--color-text);
   background-color: var(--color-bg);
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-
-.logo {
-  height: 5em;
-  padding: 1em;
-  will-change: filter;
-  transition: filter 0.2s, transform 0.2s;
-  filter: none;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 1em rgba(59, 130, 246, 0.5));
-  transform: scale(1.05);
-}
-
-.bun-logo {
-  transform: scale(1.1);
-}
-
-.react-logo {
-  animation: spin 20s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0); }
-  to { transform: rotate(360deg); }
-}
-
-/* --- Form and Inputs --- */
-
-.max-w-4xl {
-    max-width: 80rem; 
-}
-
-.bg-gray-50 {
-    background-color: var(--color-bg); 
-}
-
-.shadow-xl {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

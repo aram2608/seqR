@@ -34,8 +34,8 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <NotFound />
-      }
+        element: <NotFound />,
+      },
     ],
   },
 ]);
@@ -44,5 +44,5 @@ const root = createRoot(document.getElementById("root")!);
 root.render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );
