@@ -7,6 +7,10 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 COPY . .
+
+ARG CLIENT_API_KEY
+ENV VITE_CLIENT_API_KEY=$CLIENT_API_KEY
+
 RUN bun run build
 
 # Build static site
@@ -15,13 +19,5 @@ RUN rm -rf /usr/share/nginx/html/*
 
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 
-RUN echo 'server { \
-  listen 3000; \
-  location / { \
-    root /usr/share/nginx/html; \
-    index index.html index.html; \
-  } \
-}' > /etc/nginx/conf.d/default.conf
-
-EXPOSE 3000
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

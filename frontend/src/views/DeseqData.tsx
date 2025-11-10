@@ -18,6 +18,12 @@ interface DeseqConfigData {
   metadataFile: File | null;
 }
 
+// const apiKey: string | undefined = import.meta.env.VITE_CLIENT_API_KEY
+
+// const click = () => {
+//   console.log(apiKey)
+// }
+
 // Submission form for Deseq files
 export const DeseqConfig = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -193,12 +199,12 @@ export const DeseqConfig = () => {
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="mr-2" />
+                <Loader2 css={css`margin-right: 0.5rem`} />
                 Processing...
               </>
             ) : (
               <>
-                <Send className="mr-2" />
+                <Send css={css`margin-right: 0.5rem`} />
                 Submit Configuration
               </>
             )}

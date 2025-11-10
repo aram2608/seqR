@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"rapi/handlers"
+	"rapi/middleware"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -22,10 +23,11 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	// The react app can see api through the proxy
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"message": "pong"})
-	})
+	protected := r.Group("/")
+	protected.Use(middleware.APIKeyAuth())
+	{
+		protected.GET("/deseq/data", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{"status": "ok"}) })
+	}
 
 	// We get the form data from the frontend
 	r.POST("/deseq/data", handlers.SubmitDeseqData)
