@@ -1,33 +1,26 @@
 import React, { useState, useCallback } from "react";
-import { Send, Loader2, Info } from "lucide-react";
-/** @jsx jsx */
-import { css } from "@emotion/react";
-import FileDropZone from "@/styles/FileDrop";
+import { Info } from "lucide-react";
+
+// Styles
+import FileDropZone from "@/components/FileDrop";
 import mainContainerStyle from "@/styles/ContainerStyle";
 import headerStyle from "@/styles/HeaderStyle";
 import formStyles from "@/styles/FormStyle";
-import paragraphStyle from "@/styles/ParagraphStyle";
-import submitButtonStyle from "@/styles/SubmitButtonStyle";
+
+// Interfacetes and types
+import type { DeseqConfigData } from "@/models/DeseqConfigType";
 import type { SubmissionStatus } from "@/styles/StatusIcons";
-import { getStatusIcon } from "@/styles/StatusIcons";
 
-// We define the type to represent the configuration data
-interface DeseqConfigData {
-  formula: string;
-  countsFile: File | null;
-  metadataFile: File | null;
-}
-
-// const apiKey: string | undefined = import.meta.env.VITE_CLIENT_API_KEY
-
-// const click = () => {
-//   console.log(apiKey)
-// }
+// HTML componenents
+import { FormulaForm } from "@/components/FormulaForm";
+import { DeseqConfigButton } from "@/components/DeseqSubmitButton";
+import { SubmissionStatusLabel } from "@/components/SubmissionStatus";
+import { css } from "@emotion/react";
 
 // Submission form for Deseq files
 export const DeseqConfig = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // We use the useState cook to set our base formData
+  // We use the useState hook to set our base formData
   // We initialize the props in a null/empty state
   // setFormData can then be used down the line to update our form
   const [formData, setFormData] = useState<DeseqConfigData>({
@@ -146,29 +139,16 @@ export const DeseqConfig = () => {
   return (
     <div css={mainContainerStyle}>
       <h2 css={headerStyle}>
-        <Info className="w-6" />
-        DESeq2 Configuration Submission
+        <Info css={css({ width: "1.5rem", "&:hover": css({ backgroundColor: "#3f3cbb" }) })}/>
+        DESeq2 Data Submission
       </h2>
-
       <form onSubmit={handleSubmit} css={formStyles.form}>
         {/* Formula Design Input */}
-        <div css={formStyles.inputContainer}>
-          <label htmlFor="formula" css={formStyles.inputLabel}>
-            DESeq Formula Design
-          </label>
-          <input
-            type="text"
-            id="formula"
-            name="formula"
-            value={formData.formula}
-            onChange={handleFormulaChange}
-            placeholder="e.g., ~ strain + time"
-            css={formStyles.textInput}
-            required
-            disabled={isSubmitting}
-          />
-        </div>
-
+        <FormulaForm
+          formData={formData}
+          handleFormulaChange={handleFormulaChange}
+          isSubmitting={isSubmitting}
+        />
         {/* File Uploads */}
         <div css={formStyles.fileGrid}>
           {/* Counts File Upload */}
@@ -178,7 +158,6 @@ export const DeseqConfig = () => {
             onChange={(e) => handleFileChange(e, "countsFile")}
             disabled={isSubmitting}
           />
-
           {/* Metadata File Upload */}
           <FileDropZone
             label="Metadata File (TSV/CSV)"
@@ -187,60 +166,17 @@ export const DeseqConfig = () => {
             disabled={isSubmitting}
           />
         </div>
-
         {/* Submission Button and Status */}
-        <div css={formStyles.submitContainer}>
-          <button
-            type="submit"
-            disabled={
-              isSubmitting || !formData.countsFile || !formData.metadataFile
-            }
-            css={submitButtonStyle(isSubmitting, isDisabled)}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 css={css`margin-right: 0.5rem`} />
-                Processing...
-              </>
-            ) : (
-              <>
-                <Send css={css`margin-right: 0.5rem`} />
-                Submit Configuration
-              </>
-            )}
-          </button>
-        </div>
-
+        <DeseqConfigButton
+          formData={formData}
+          isSubmitting={isSubmitting}
+          isDisabled={isDisabled}
+        />
         {/* Submission Status Display */}
-        <div css={formStyles.statusDisplay}>
-          {getStatusIcon(status)}
-          {status === "success" && (
-            <p css={paragraphStyle}>Configuration successfully submitted!</p>
-          )}
-          {status === "error" && (
-            <div
-              css={css`
-                margin-left: 0.75rem;
-                color: #ef4444;
-              `}
-            >
-              <p
-                css={css`
-                  font-weight: 600;
-                `}
-              >
-                Submission Error
-              </p>
-              <p
-                css={css`
-                  font-size: 0.875rem;
-                `}
-              >
-                {errorMessage || "An unknown error occurred during submission."}
-              </p>
-            </div>
-          )}
-        </div>
+        <SubmissionStatusLabel 
+        status={status}
+        errorMessage={errorMessage}
+        />
       </form>
     </div>
   );
