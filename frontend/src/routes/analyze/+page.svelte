@@ -1,6 +1,5 @@
 <script lang="ts">
 	const endPoint = 'http://localhost:8000/api/data';
-
 	async function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		const form = event.currentTarget as HTMLFormElement;
@@ -11,7 +10,7 @@
 		});
 		const result = await response.json();
 		console.log(result);
-	}
+	};
 </script>
 
 <svelte:head>

@@ -7,8 +7,6 @@ import os
 app = FastAPI()
 
 SAVE_DIR = "uploads"
-if not os.path.isdir(SAVE_DIR):
-    os.mkdir(SAVE_DIR)
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,12 +20,24 @@ app.add_middleware(
 async def root():
     return {"message": "Hello World"}
 
+@app.post("/pong")
+async def pong():
+    return {
+        "STATUS": http.HTTPStatus.OK,
+        "message": "pong",
+        }
+
 @app.post("/api/data")
 async def get_count_data(file: UploadFile):
     """
     Endpoint to recieve the count data from the frontend.
     """
     if file:
+        if file.filename == "":
+            return {
+                "STATUS": http.HTTPStatus.BAD_REQUEST,
+                "message": "No file provided",
+                }
         file_location = f"{SAVE_DIR}/{file.filename}"
 
         with open(file_location, "wb") as buffer:
