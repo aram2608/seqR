@@ -1,0 +1,24 @@
+html {
+  font-family: sans-serif;
+  background-color: #64242F;
+  padding: 1rem;
+}
+
+.nav-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: left;
+}
+
+.page-link {
+  background-color: #B44446;
+  display: block;
+  padding: 14px 16px;
+  border-radius: 20px 0 20px 0;
+  color: #DFD9D8;
+  &:hover {
+    background-color: #FC8F8F;
+  }
+}

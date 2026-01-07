@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} seqR {% endblock %}</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav>
+            <ul class="nav-bar">
+                <li>
+                    <a class="page-link" href="/">Home</a>
+                </li>
+                <li>
+                    <a class="page-link" href="/about">About</a>
+                </li>
+                <li>
+                    <a class="page-link" href="/analyze">Analyze</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- place holder, child html file content will go here -->
+        {% endblock %}
+    </main>
+</body>
+<footer>
+        <p>&copy; Javier Arambula Rascon. Made with Flask </p>
+</footer>
+
+<!-- extra block for extra styles if need be -->
+{% block styles %}{% endblock %}
