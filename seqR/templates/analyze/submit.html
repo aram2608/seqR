@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %} Analyze {% endblock %}
+
+{% block content %}
+<div class="form-wrapper">
+    <form class="file-form" method="POST" enctype="multipart/form-data" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.meta_data.label(class="form-label") }}
+            {{ form.meta_data(class="form-input", placeholder="Enter meta data...") }}
+            {% for error in form.meta_data.errors %}
+                <span class="form-error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.count_data.label(class="form-label") }}
+            {{ form.count_data(class="form-input", placeholder="Enter count...") }}
+            {% for error in form.count_data.errors %}
+                <span class="form-error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-actions">
+            {{ form.submit(class="form-submit") }}
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+.form-wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.file-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    border: 1px solid var(--accent-red);
+    border-radius: 30px 0 30px 0;
+    background-color: var(--bg-color-dark);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-weight: bold;
+    color: var(--accent-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.form-input {
+    background-color: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    padding: 12px 16px;
+    font-size: 1rem;
+    border-radius: 12px 0 12px 0; 
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    &::placeholder {
+        color: var(--text-color-placeholder)
+    }
+    &:focus {
+        border-color: var(--accent-light);
+        background-color: var(--bg-color-offred);
+        transform: translateY(-2px);
+    }
+}
+
+.form-error {
+    color: var(--accent-light);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.form-submit {
+    background-color: var(--accent-red);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 20px 0 20px 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    margin-top: 1rem;
+    &:hover {
+        background-color: var(--accent-light);
+        color: var(--text-color-inverted);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    &:active {
+        transform: translateY(0);
+    }
+}
+</style>
+{% endblock %}

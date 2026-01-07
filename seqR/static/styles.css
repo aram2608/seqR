@@ -1,7 +1,10 @@
 :root {
   --bg-color: #64242F;
+  --bg-color-offred: rgba(255, 255, 255, 0.05);
+  --bg-color-dark: rgba(0, 0, 0, 0.1);
   --text-color: #DFD9D8;
   --text-color-inverted: #64242F;
+  --text-color-placeholder: rgba(223, 217, 216, 0.5);
   --accent-red: #B44446;
   --accent-light: #FC8F8F;
 }
@@ -17,6 +20,10 @@ html {
     width: 100%;
     border-bottom: 1px solid var(--text-color);
     padding: 0 1rem;
+}
+
+.main-heading {
+  color: var(--text-color);
 }
 
 .nav-container {
@@ -76,4 +83,13 @@ html {
     max-width: 80rem;
     margin: 2rem auto;
     padding: 0 1rem;
+}
+
+.copy-right {
+  color: var(--text-color);
+  text-decoration: none;
+  letter-spacing: 1px;
+    &:hover {
+      color: var(--accent-light);
+    }
 }

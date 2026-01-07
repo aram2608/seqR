@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="file-form" style="text-align: center;">
+        <h2 style="color: var(--accent-light);">Files Ready</h2>
+        <ul style="color: var(--text-color); list-style: none; padding: 0;">
+            <li>Meta Data Loaded</li>
+            <li>Counts Data Loaded</li>
+        </ul>
+        
+        <form action="/run-calculation" method="POST">
+            <button type="submit" class="form-submit">
+                Start Analysis
+            </button>
+        </form>
+        
+        <a class="reupload" href="{{ url_for('analyze.analyze_page') }}" >
+           Upload different files
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles%}
+<style>
+.file-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    border: 1px solid var(--accent-red);
+    border-radius: 30px 0 30px 0;
+    background-color: var(--bg-color-dark);
+}
+
+.form-submit {
+    background-color: var(--accent-red);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 20px 0 20px 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    margin-top: 1rem;
+    &:hover {
+        background-color: var(--accent-light);
+        color: var(--text-color-inverted);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.reupload {
+    background-color: var(--accent-red);
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 20px 0 20px 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-top: 1rem;
+    &:hover {
+        background-color: var(--accent-light);
+        color: var(--text-color-inverted);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    &:active {
+        transform: translateY(0);
+    }
+}
+</style>
+{% endblock %}
