@@ -7,22 +7,20 @@
 
 <body>
     <header class="header">
-        <nav>
-            <ul class="nav-bar">
-                <li>
-                    <a class="page-link" href="/">Home</a>
-                </li>
-                <li>
-                    <a class="page-link" href="/about">About</a>
-                </li>
-                <li>
-                    <a class="page-link" href="/analyze">Analyze</a>
-                </li>
+        <nav class="nav-container">
+            <a class="nav-brand" href="/">
+                seqR
+            </a>
+            <ul class="nav-links">
+                <li><a class="page-link" href="/">Home</a></li>
+                <li><a class="page-link" href="/about">About</a></li>
+                <li><a class="page-link" href="/analyze">Analyze</a></li>
+                <li><a class="page-link special" href="/more">More</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main class="content">
         {% block content %}
         <!-- place holder, child html file content will go here -->
         {% endblock %}

@@ -1,24 +1,79 @@
+:root {
+  --bg-color: #64242F;
+  --text-color: #DFD9D8;
+  --text-color-inverted: #64242F;
+  --accent-red: #B44446;
+  --accent-light: #FC8F8F;
+}
+
 html {
-  font-family: sans-serif;
-  background-color: #64242F;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
   padding: 1rem;
 }
 
-.nav-bar {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: left;
+.header {
+    background-color: var(--bg-color);
+    width: 100%;
+    border-bottom: 1px solid var(--text-color);
+    padding: 0 1rem;
+}
+
+.nav-container {
+    max-width: 80rem; 
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 1px;
+    &:hover {
+      color: var(--accent-light);
+    }
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .page-link {
-  background-color: #B44446;
-  display: block;
-  padding: 14px 16px;
-  border-radius: 20px 0 20px 0;
-  color: #DFD9D8;
-  &:hover {
-    background-color: #FC8F8F;
-  }
+    display: inline-block;
+    background-color: var(--accent-red);
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 20px 0 20px 0;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: var(--accent-light);
+      color: var(--text-color-inverted);
+      transform: translateY(-2px);
+    }
+}
+
+.page-link.special {
+    background-color: transparent;
+    border: 2px solid var(--accent-red);
+    &:hover {
+      background-color: var(--accent-red);
+      color: var(--text-color)
+    }
+}
+
+.content {
+    max-width: 80rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
