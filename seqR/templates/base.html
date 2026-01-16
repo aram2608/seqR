@@ -1,34 +1,43 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %} seqR {% endblock %}</title>
-</head>
-
-<body>
-    <header class="header">
-        <nav class="nav-container">
-            <a class="nav-brand" href="/">
-                seqR
-            </a>
-            <ul class="nav-links">
-                <li><a class="page-link" href="/">Home</a></li>
-                <li><a class="page-link" href="/about">About</a></li>
-                <li><a class="page-link" href="/analyze">Analyze</a></li>
-                <li><a class="page-link special" href="/more">More</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main class="content">
-        {% block content %}
-        <!-- place holder, child html file content will go here -->
-        {% endblock %}
-    </main>
-</body>
-<footer>
-    <a class="copy-right" href="https://aram2608.github.io/" >&copy; Javier Arambula Rascon. Made with Flask </a>
-</footer>
+<html lang="en" data-theme="light">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} seqR {% endblock %}</title>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="nav-container">
+                <a class="nav-brand" href="/">
+                    seqR
+                </a>
+                <ul class="nav-links">
+                    <li><a class="page-link" href="{{ url_for('index') }}">Home</a></li>
+                    <li><a class="page-link" href="{{ url_for('about.about_page') }}">About</a></li>
+                    <li><a class="page-link" href="{{ url_for('analyze.analyze_page') }}">Analyze</a></li>
+                    <li><a class="page-link" href="{{ url_for('/more.more_page') }}">More</a></li>
+                    <button
+                        type="button"
+                        id="theme-toggle"
+                        class="page-link special" 
+                        aria-label="Dark Theme"
+                        >
+                    </button>
+                </ul>
+            </nav>
+        </header>
+        
+        <main class="content">
+            {% block content %}
+            <!-- place holder, child html file content will go here -->
+            {% endblock %}
+        </main>
+    </body>
+    <footer>
+        <a class="copy-right" href="https://aram2608.github.io/" >&copy; Javier Arambula Rascon. Made with Flask </a>
+    </footer>
+    <script src="{{ url_for('static', filename='scripts/theme-toggle.js') }}" ></script>
+</html>
 
 <!-- extra block for extra styles if need be -->
 {% block styles %}{% endblock %}

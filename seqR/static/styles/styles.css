@@ -1,4 +1,4 @@
-:root {
+:root[data-theme="dark"] {
   --bg-color: #64242F;
   --bg-color-offred: rgba(255, 255, 255, 0.05);
   --bg-color-dark: rgba(0, 0, 0, 0.1);
@@ -7,6 +7,17 @@
   --text-color-placeholder: rgba(223, 217, 216, 0.5);
   --accent-red: #B44446;
   --accent-light: #FC8F8F;
+}
+
+:root[data-theme="light"] {
+  --bg-color: #F8F5F4;
+  --bg-color-offred: rgba(180, 68, 70, 0.08);
+  --bg-color-dark: rgba(100, 36, 47, 0.05);
+  --text-color: #3D161D;
+  --text-color-inverted: #F8F5F4;
+  --text-color-placeholder: rgba(61, 22, 29, 0.5);
+  --accent-red: #B44446;
+  --accent-light: #64242F;
 }
 
 html {
